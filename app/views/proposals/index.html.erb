@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+<%= render 'linkto_main' %>
+<h1>건의사항</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>글번호</th>
+      <th>분류</th>
+      <th>답글</th>
+      <th>제목</th>
+      <th>작성일</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @proposals.each do |proposal| %>
+      <tr>
+        <td><%= proposal.id %></td>
+        <td><%= proposal.p_category %></td>
+        <td><%= proposal.p_answer %></td>
+        <td><%= link_to proposal.p_title, proposal %></td>
+        <td><%= proposal.created_at.strftime("%H:%M%Y/%m/%d") %></td>
+        <td>
+          <% if proposal.p_studentID == current_domitory.student_number%>
+            <%= link_to '수정', edit_proposal_path(proposal) %>
+          <%else%> <%end%>  
+          </td>
+        <td>
+          <% if proposal.p_studentID == current_domitory.student_number%>
+            <%= link_to '삭제', proposal, method: :delete, data: { confirm: '삭제하시겠습니까?' } %>
+          <%else%> <%end%>
+            </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '새 글 쓰기', new_proposal_path %>
+<Br>
+  <% @totalPageList.each do |page| %>
+<a href="/proposals?current_page=<%=page%>">
+  [
+<% if page == @current_page.to_i %>
+<b><% end %>
+<%= page %>
+<% if page == @current_page.to_i %>
+</b>
+<% end %>
+  ]
+</a>
+<% end %>

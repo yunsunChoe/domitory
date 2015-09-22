@@ -1,0 +1,50 @@
+<h1>관리자페이지</h1>
+
+<h3>외박신청</h3>
+<form>
+  <table border = 1>
+    <tr>
+      <td>이름</td>
+      <td>학번</td>
+      <td>외박시작일자</td>
+      <td>외박종료일자</td>
+      <td>남은일자</td>
+      <td>승인</td>
+    </tr>
+        <% @sleepoutApply.each do |apply| %>
+      <tr>
+        <td>
+        </td>
+        <td><%= apply.student_number%></td>
+        <td><%= apply.apply_start_date%></td>
+        <td><%= apply.apply_end_date%></td>
+        <td>12</td>
+        <td><input type = button value = "승인대기"></td>
+      </tr>
+    <% end %>
+</table>
+</form>
+
+<h3>커뮤니티 신청</h3>
+<form>
+<table border = 1>
+    <tr>
+        <td>이름</td>
+        <td>학번</td>
+        <td>신청날짜</td>
+        <td>승인</td>
+    </tr>
+    <% @crooms.each do |croom|%>
+       <tr>
+         <td>
+           <% if croom.domitory_id != nil %>
+           <%= croom.domitory.name %>
+           <%else%>domitory_id is null!<%end%>
+           </td>
+          <td><%= croom.student_number %></td>          
+          <td><%= croom.apply_date%></td>
+        <td><input type = button value = "승인대기"></td>
+      </tr>
+    <% end %>
+</table>
+</form>

@@ -1,0 +1,55 @@
+<p id="notice"><%= notice %></p>
+<a href="domitory/index">메인으로</a>
+<h1>커뮤니티</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>글번호</th>
+      <th>분 류</th>
+      <th>&nbsp;&nbsp;제 목&nbsp;&nbsp;</th>
+      <th>조회 수</th>
+      <th>작성일</th>
+      <th colspan="2"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @communities.each do |community| %>
+      <tr>
+        <td><%= community.com_writer %></td>
+        <td><%= community.com_category %></td>
+        <td>&nbsp;&nbsp;<%= link_to community.com_title, community %>&nbsp;&nbsp;</td>
+        <td><%= community.com_hits %></td>
+        <td><%= community.created_at.strftime("%H:%M%Y/%m/%d") %></td>
+        <td>
+          <% if community.com_studentID == current_domitory.student_number%>
+            <%= link_to '수정', edit_community_path(community) %>
+          <%else%> <%end%>  
+          </td>
+        <td>
+          <% if community.com_studentID == current_domitory.student_number%>
+            <%= link_to '삭제', community, method: :delete, data: { confirm: '삭제하시겠습니까?' } %>
+          <%else%> <%end%>
+            </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to '새 글 쓰기', new_community_path %><br>
+
+<% @totalPageList.each do |page| %>
+<a href="/communities?current_page=<%=page%>">
+  [
+<% if page == @current_page.to_i %>
+<b><% end %>
+<%= page %>
+<% if page == @current_page.to_i %>
+</b>
+<% end %>
+  ]
+</a>
+<% end %>

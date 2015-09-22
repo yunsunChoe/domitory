@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+<h1>공지사항</h1>
+<%= link_to '등록', new_notice_path %><br><br>
+<table border = 1>
+  <thead>
+    <tr>
+      <th>NO</th>
+      <th>제목</th>
+      <th>첨부파일</th>
+      <th>날짜</th>
+      <th>조회수</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @notices.each do |notice| %>
+      <tr>
+        <td><%=notice.id %></td>
+        <td><%= link_to notice.notice_title , notice %></td>
+        <td></td>
+        <td><%= notice.created_at %></td>
+        <td><%= notice.notice_hits %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% @totalPageList.each do |page| %>
+<a href="/notices?current_page=<%=page%>">
+  [
+<% if page == @current_page.to_i %>
+<b><% end %>
+<%= page %>
+<% if page == @current_page.to_i %>
+</b>
+<% end %>
+  ]
+</a>
+<% end %>
+

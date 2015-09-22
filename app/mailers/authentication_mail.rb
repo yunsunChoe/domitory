@@ -1,0 +1,2 @@
+class AuthenticationMail < ApplicationMailer
+end

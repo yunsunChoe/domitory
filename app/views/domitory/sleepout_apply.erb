@@ -1,0 +1,80 @@
+<head>
+<script language="javascript">
+    function writeCheck() {
+        var form = document.writeform;
+
+        if (form.sleepout_reason.value=="first")
+        {
+            alert("외박사유를 선택해주세요");
+            form.sleepout_reason.focus();
+            return;
+        }
+        // if (!form.subject.value) {
+        //     alert("제목을 적어주세요");
+        //     form.subject.focus();
+        //     return;
+        // }
+
+        else
+            alert("외박신청이 완료되었습니다.")
+        form.submit();
+    }
+    function cancelCheck() {
+        alert("외박신청이 취소되었습니다.")
+    }
+</script>
+</head>
+<h1>외박신청</h1>
+<table border = 1 >
+    <form name=writeform method=post action = "/domitory/sleepout">
+    <tr align = center>
+        <td colspan=6>외박신청</td>
+    </tr>
+    <tr align = center>
+        <td>외박구분</td>
+        <td>
+            <select name="sleepout_section">
+                <option value="general">일반</option>
+                <option value="special">특별</option>
+            </select>
+        </td>
+        <td>외박사유</td>
+        <td>
+            <select name="sleepout_reason">
+                <option value="first" selected>선택하세요</option>
+                <option value="hw">야작(과제)</option>
+                <option value="friend">친구집 방문</option>
+                <option value="campus_room">교내 열람실</option>
+                <option value="domitory_room">목화관내 열람실</option>
+                <option value="visit">본가 및 친척집 방문</option>
+                <option value="long">장기외박신청</option>
+                <option value="gevent">학교수업 및 행사</option>
+                <option value="part_time">아르바이트</option>
+                <option value="etc">기타</option>
+            </select>
+        </td>
+        <td>호실</td>
+        <td><%= current_domitory.room_number%></td>  <!--개인의 정보에 따라 미리 호실입력받아옴(입력받지않음)-->
+    </tr>
+    <tr align = center>
+        <td>본인연락처</td>
+        <td colspan=2><%= current_domitory.user_phone_number%></td> <!--개인의 정보에 따라 미리 번호입력받아옴(입력받지않음)-->
+        <td>보호자연락처</td>
+        <td colspan=2><%= current_domitory.parent_phone_number%></td> <!--개인의 정보에 따라 미리 번호입력받아옴(입력받지않음)-->
+    </tr>
+    <tr align = center>
+        <td>외박시작일자</td>
+        <td><input type = date name="apply_start_date"></td>
+        <td>외박종료일자</td>
+        <td><input type = date name="apply_end_date"></td>
+        <td>남은외박횟수</td>
+        <td>12</td>
+    </tr>
+</table>
+    <input type = hidden value = "1" name = sleepout_apply>
+<input type = submit value = "외박신청" name = apply OnClick="javascript:writeCheck();">
+<input type = reset value = "외박취소" name = cancel OnClick="javascript:cancelCheck();">
+</form>
+<% apply_start_date =  "2012-03-02 14:46:21 +0100" %>
+<% apply_end_date   =  "2012-04-02 14:46:21 +0200" %>
+<%= distance_of_time_in_words(apply_start_date, apply_end_date)  %>

@@ -1,0 +1,21 @@
+<h1>커뮤니티룸 신청</h1>
+<form action = "/domitory/croom" method = "POST">                                                                                                                                                                                                          
+<table border = 1>
+<tr>
+  <input type="hidden" name="domitory_id" value="<%= current_domitory.id %>"/>
+  <td>학번</td><td><input type = text value = "<%= current_domitory.student_number %>" name = "student_number"></td>
+  <td>이름</td><td><input type = text value = "<%= current_domitory.name %>" name = "student_name"></td>
+  <td>호실</td><td><input type = text value = "<%= current_domitory.room_number %>" name = "room_number"></td>
+</tr>
+<tr>
+  <td>대실날짜</td><td colspan = 2><input type = date name = "apply_date" value = <% Date.today.to_s%>)></td>
+  <td>대실사유</td><td colspan = 2><select name="croom_reason">
+                <option value="first" selected>선택하세요</option>
+                <option value="hw">야작(과제)</option>
+                <option value="test">시험</option>
+                <option value="etc">기타</option>
+            </select></td>
+</tr>
+</table>
+<input type = submit value = "신청"><input type = button value = "취소">
+</form>

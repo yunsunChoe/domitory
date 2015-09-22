@@ -1,0 +1,20 @@
+<h1>Domitory#index</h1>
+<p>Find me in app/views/domitory/index.html.erb</p>
+
+ <% if domitory_signed_in? %> 
+     <a href="/domitories/sign_out">로그아웃하기</a><br>
+ <% else %>
+     <a href="/domitories/sign_in">로그인하기</a><br>
+ <%end%>
+
+<a href="/communities">커뮤니티</a><br>
+<a href="/domitory/myinfo">내 정보</a><br>
+<a href="/notices">공지사항</a><br>
+<a href="/proposals">건의사항</a><br>
+<a href="/domitory/sleepout_apply">외박신청</a><br>
+<a href="/domitory/croom_apply">커뮤니티룸 신청</a><br>
+<a href="/domitory/admin">관리자페이지</a><br>
+<%= @a.strftime("Printed on %m/%d/%Y") %>
+
+<%= current_domitory.email %>
+<%= current_domitory.inspect %>

@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+<%= render 'linkto_main' %>
+<p>
+  <strong>분류</strong><br>
+  <%= @community.com_category %>
+</p>
+
+<p>
+  <strong>제목</strong><br>
+  <%= @community.com_title %>
+</p>
+
+<p>
+  <strong>글번호</strong>
+  <%= @community.com_writer %>
+  <strong>조회 수</strong>
+  <%= @community.com_hits %>
+</p>
+
+<p>
+  <strong>내용</strong><br>
+  <%= @community.com_content %>
+</p>
+
+<p>
+  <strong>댓글</strong><br>
+  <% @community.replies.each do |r| %>
+   >><%= r.r_content %>
+   <form action="/communities/delete_reply/<%= r.id %>" method="post">
+     <input type="hidden" name="community_id" value="<%= r.community_id %>"/>
+     <button type="submit" style="border: none; background: transparent;">삭제</button>
+   </form>
+  <%end%>
+</p>
+
+<p>
+  <strong>댓글 쓰기</strong><br>
+    <form action="/communities/write_reply" method="POST">
+    <input type = "hidden" name="community_id" value="<%=@community.id%>">
+    <textarea name="my_r_content" rows="3" cols="15"></textarea>
+    <input type = "submit" value="확인">
+    </form>
+</p>
+
+<%= link_to '수정', edit_community_path(@community) %> |
+<%= link_to '뒤로', communities_path %>

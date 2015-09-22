@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  com_category: MyString
+  com_title: MyString
+  com_content: MyText
+  com_writer: MyString
+  com_hits: 1
+
+two:
+  com_category: MyString
+  com_title: MyString
+  com_content: MyText
+  com_writer: MyString
+  com_hits: 1
