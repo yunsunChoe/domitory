@@ -24,10 +24,12 @@
   <strong>답글</strong><br>
   <% @proposal.reply_proposals.each do |r| %>
    >><%= r.answer_content %>
-   <form action="/proposals/delete_answer/<%= r.id %>" method="post">
-     <input type="hidden" name="proposal_id" value="<%= r.proposal_id %>"/>
-     <button type="submit" style="border: none; background: transparent;">삭제</button>
-   </form>
+   <% if r.answer_studentID == current_domitory.student_number%>
+        <form action="/proposals/delete_answer/<%= r.id %>" method="post">
+           <input type="hidden" name="proposal_id" value="<%= r.proposal_id %>"/>
+           <button type="submit" style="border: none; background: transparent;">삭제</button>
+        </form>
+    <%else%> <%end%>
   <%end%>
 </p>
 
@@ -39,6 +41,8 @@
     <input type = "submit" value="확인">
     </form>
 </p>
-
-<%= link_to 'Edit', edit_proposal_path(@proposal) %> |
+ <% if @proposal.p_studentID == current_domitory.student_number%>
+            <%= link_to '수정', edit_proposal_path(@proposal) %> |
+            <%= link_to '삭제', @proposal, method: :delete, data: { confirm: '삭제하시겠습니까?' } %>
+          <%else%> <%end%>
 <%= link_to 'Back', proposals_path %>

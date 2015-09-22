@@ -1,13 +1,16 @@
 class DomitoryController < ApplicationController
    before_filter :authenticate_domitory!
+   
     def index
-        @a = Time.new  
-       # @username = Domitory.where(:id => session["id"]).take.username
-       
     end
     
     def myinfo
+       post = Domitory.new
+       post.sleepout_rest = params[:sleepout_rest]
+       post.save
        
+       @SleepUser = Sleepoutdb.all
+       @CroomUser = Croomdb.all
     end
     
     def croom_apply
@@ -31,6 +34,7 @@ class DomitoryController < ApplicationController
     end
     def sleepout
         post = Sleepoutdb.new
+        post.domitory_id  = params[:domitory_id]
         post.student_number = params[:student_number]
         post.apply_start_date = params[:apply_start_date]
         post.apply_end_date = params[:apply_end_date]
@@ -49,4 +53,22 @@ class DomitoryController < ApplicationController
         @sleepoutApply = Sleepoutdb.all
     end
 
+    def admin_croom
+        one_post = Croomdb.find(params[:id])
+        one_post.apply = 2
+        one_post.save
+        redirect_to '/domitory/admin'
+    end
+    
+    def admin_sleepout
+        one_post = Sleepoutdb.find(params[:id])
+        one_post.domitory.decrement!(:sleepout_rest, (one_post.apply_end_date - one_post.apply_start_date))
+        one_post.apply = 2
+        one_post.save
+        redirect_to :action => "admin"
+    end
+    def email_send
+        AuthenticationMail.welcom_email.deliver_now #지금 배달 해라
+        redirect_to '/'
+    end
 end

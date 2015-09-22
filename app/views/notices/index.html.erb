@@ -1,29 +1,52 @@
-<p id="notice"><%= notice %></p>
-<h1>공지사항</h1>
-<%= link_to '등록', new_notice_path %><br><br>
-<table border = 1>
-  <thead>
-    <tr>
-      <th>NO</th>
-      <th>제목</th>
-      <th>첨부파일</th>
-      <th>날짜</th>
-      <th>조회수</th>
+  <div class="container">
+	<div class="row">
+      <div class="col col-sm-12">
+        
+        <div class="panel">
+        <div class="panel-body">
+          모든 사생들은 필독해주세요 <span class="glyphicon glyphicon-heart-empty"></span>
+        </div>
+        </div>
+        
+      </div>
+  	</div>
+  </div>
+
+
+<!-- Begin Body -->
+<div class="container">
+	<div class="row">
+  		
+
+              <div class="panel">
+              
+
+  <table class="table table-striped">
+
+  <thead align = "center">
+    <tr align = "center">
+      <td align = "center">글번호</td>
+      <td align = "center">제목</td>
+      <td align = "center">첨부파일</td>
+      <td>작성일</td>
+      <td>조회수</td>
     </tr>
   </thead>
 
   <tbody>
     <% @notices.each do |notice| %>
-      <tr>
+      <tr align = "center">
         <td><%=notice.id %></td>
         <td><%= link_to notice.notice_title , notice %></td>
         <td></td>
-        <td><%= notice.created_at %></td>
+        <td><%= notice.created_at.strftime("%H:%M %Y/%m/%d") %></td>
         <td><%= notice.notice_hits %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
+<br>
+<center>
 <% @totalPageList.each do |page| %>
 <a href="/notices?current_page=<%=page%>">
   [
@@ -36,4 +59,15 @@
   ]
 </a>
 <% end %>
+</center>
+<br>
+<div style="text-align:right">
+<a class="btn btn-default" href="<%= new_notice_path %>" role="button">글쓰기</a>
+</div>
+<hr>
+             	</div>
+      	</div> 
+  	</div>
+
+
 

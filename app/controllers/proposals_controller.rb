@@ -7,7 +7,7 @@ class ProposalsController < ApplicationController
   
   def index
     @current_page = if params[:current_page] then params[:current_page] else 1 end
-    per_page = 20
+    per_page = 15
     @proposals = Proposal.limit(per_page).order(id: :desc).all.offset((@current_page.to_i - 1) * per_page)
     @totalCnt = Proposal.all.count
     @totalPageList = getTotalPageList(@totalCnt, per_page)
@@ -70,6 +70,7 @@ class ProposalsController < ApplicationController
   
   def write_answer
     @w_answer = ReplyProposal.new
+    @w_answer.answer_studentID = current_domitory.student_number
     @w_answer.proposal_id  = params[:proposal_id]
     @w_answer.answer_content = params[:my_answer_content]
     @w_answer.save

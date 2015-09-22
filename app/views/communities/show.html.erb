@@ -26,10 +26,12 @@
   <strong>댓글</strong><br>
   <% @community.replies.each do |r| %>
    >><%= r.r_content %>
-   <form action="/communities/delete_reply/<%= r.id %>" method="post">
-     <input type="hidden" name="community_id" value="<%= r.community_id %>"/>
-     <button type="submit" style="border: none; background: transparent;">삭제</button>
-   </form>
+    <% if r.r_studentID == current_domitory.student_number%>
+        <form action="/communities/delete_reply/<%= r.id %>" method="post">
+           <input type="hidden" name="community_id" value="<%= r.community_id %>"/>
+           <button type="submit" style="border: none; background: transparent;">삭제</button>
+        </form>
+    <%else%> <%end%>
   <%end%>
 </p>
 
@@ -41,6 +43,9 @@
     <input type = "submit" value="확인">
     </form>
 </p>
+<% if @community.com_studentID == current_domitory.student_number%>
+            <%= link_to '수정|', edit_community_path(@community) %>
+            <%= link_to '삭제', @community, method: :delete, data: { confirm: '삭제하시겠습니까?' } %>
+<%else%> <%end%>
 
-<%= link_to '수정', edit_community_path(@community) %> |
 <%= link_to '뒤로', communities_path %>

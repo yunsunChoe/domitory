@@ -5,6 +5,7 @@ Rails.application.configure do
         api_key:'<key-d09023b92f2e88cfa755be31d7f47aa1>',
         domain:'<sandboxa0ce14c4ac924fb78de3023acb65b2d9.mailgun.org>'
   }
+  config.action_mailer.default_url_options = { host: 'localhost', port: 80 }
 
   # Settings specified here will take precedence over those in config/application.rb.
 

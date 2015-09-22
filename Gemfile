@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
+
+gem 'simple_calendar', '~> 2.0'
 gem 'bootstrap-sass', '~> 3.3.3' 
 gem 'mailgun_rails'
 gem 'simple_form'

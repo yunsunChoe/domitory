@@ -1,46 +1,52 @@
-<p id="notice"><%= notice %></p>
-<a href="domitory/index">메인으로</a>
-<h1>커뮤니티</h1>
+<div class="container">
+	<div class="row">
+      <div class="col col-sm-12">
+        
+        <div class="panel">
+        <div class="panel-body">
+          서로 상처받지 않도록 예의를 갖춰 소통합시다<span class="glyphicon glyphicon-heart-empty"></span>
+        </div>
+        </div>
+        
+      </div>
+  	</div>
+  </div>
 
-<table>
+<!-- Begin Body -->
+<div class="container">
+              <div class="panel">
+
+          <p id="notice"><%= notice %></p>
+          <center>
+
+</center>
+
+<table class="table table-striped">
   <thead>
-    <tr>
-      <th>글번호</th>
-      <th>분 류</th>
-      <th>&nbsp;&nbsp;제 목&nbsp;&nbsp;</th>
-      <th>조회 수</th>
-      <th>작성일</th>
-      <th colspan="2"></th>
+    <tr align = "center">
+      <td>글번호</td>
+      <td>분 류</td>
+      <td>제 목</td>
+      <td>작성일</td>
+      <td>조회수</td>
     </tr>
   </thead>
 
   <tbody>
     <% @communities.each do |community| %>
-      <tr>
+      <tr align = "center">
         <td><%= community.com_writer %></td>
         <td><%= community.com_category %></td>
-        <td>&nbsp;&nbsp;<%= link_to community.com_title, community %>&nbsp;&nbsp;</td>
+        <td><%= link_to community.com_title, community %></td>
+        <td><%= community.created_at.strftime("%H:%M %Y/%m/%d") %></td>
         <td><%= community.com_hits %></td>
-        <td><%= community.created_at.strftime("%H:%M%Y/%m/%d") %></td>
-        <td>
-          <% if community.com_studentID == current_domitory.student_number%>
-            <%= link_to '수정', edit_community_path(community) %>
-          <%else%> <%end%>  
-          </td>
-        <td>
-          <% if community.com_studentID == current_domitory.student_number%>
-            <%= link_to '삭제', community, method: :delete, data: { confirm: '삭제하시겠습니까?' } %>
-          <%else%> <%end%>
-            </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to '새 글 쓰기', new_community_path %><br>
-
+<center>
 <% @totalPageList.each do |page| %>
 <a href="/communities?current_page=<%=page%>">
   [
@@ -53,3 +59,12 @@
   ]
 </a>
 <% end %>
+</center>
+<br>
+<div style="text-align:right">
+<a class="btn btn-default" href="<%= new_community_path %>" role="button">글쓰기</a>
+</div>
+<hr>
+  	</div>
+</div>
+

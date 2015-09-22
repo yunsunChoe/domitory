@@ -1,21 +1,23 @@
 class Domitories::RegistrationsController < Devise::RegistrationsController
 # before_filter :configure_sign_up_params, only: [:create]
 # before_filter :configure_account_update_params, only: [:update]
+
   def sign_up_params
     devise_parameter_sanitizer.sanitize(:sign_up)
   end
   def account_update_params
     devise_parameter_sanitizer.sanitize(:account_update)
   end
-  private
-    def sign_up_params
+  
+  def sign_up_params
       params.require(:user).permit(:email, :password, :password_confirmation, :name, :student_number, :major, :user_phone_number, :parent_phone_number, :room_number)
-    end
-
-    def account_update_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :name, :student_number, :major, :user_phone_number, :parent_phone_number, :room_number)
-    end
   end
+
+  def account_update_params
+      params.require(:user).permit(:email, :password, :password_confirmation, :name, :student_number, :major, :user_phone_number, :parent_phone_number, :room_number)
+  end
+  
+ 
   # GET /resource/sign_up
   # def new
   #   super

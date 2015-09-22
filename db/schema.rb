@@ -27,10 +27,10 @@ ActiveRecord::Schema.define(version: 20150922090304) do
   create_table "croomdbs", force: :cascade do |t|
     t.integer  "domitory_id"
     t.integer  "student_number"
-    t.string   "apply_date"
-    t.integer  "apply"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.date     "apply_date"
+    t.integer  "apply",          default: 0
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "domitories", force: :cascade do |t|
@@ -44,16 +44,22 @@ ActiveRecord::Schema.define(version: 20150922090304) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
-    t.string   "student_number"
+    t.integer  "student_number"
     t.string   "major"
     t.string   "user_phone_number"
     t.string   "parent_phone_number"
     t.string   "room_number"
+    t.integer  "sleepout_rest",          default: 12
   end
 
+  add_index "domitories", ["confirmation_token"], name: "index_domitories_on_confirmation_token", unique: true
   add_index "domitories", ["email"], name: "index_domitories_on_email", unique: true
   add_index "domitories", ["reset_password_token"], name: "index_domitories_on_reset_password_token", unique: true
 
@@ -78,6 +84,7 @@ ActiveRecord::Schema.define(version: 20150922090304) do
   create_table "replies", force: :cascade do |t|
     t.integer  "community_id"
     t.text     "r_content"
+    t.string   "r_studentID"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
   end
@@ -85,15 +92,16 @@ ActiveRecord::Schema.define(version: 20150922090304) do
   create_table "reply_proposals", force: :cascade do |t|
     t.integer  "proposal_id"
     t.text     "answer_content"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "answer_studentID"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   create_table "sleepoutdbs", force: :cascade do |t|
+    t.integer  "domitory_id"
     t.integer  "student_number"
-    t.integer  "room_number"
-    t.string   "apply_start_date"
-    t.string   "apply_end_date"
+    t.date     "apply_start_date"
+    t.date     "apply_end_date"
     t.integer  "apply"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false

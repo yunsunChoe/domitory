@@ -7,7 +7,7 @@ class NoticesController < ApplicationController
   
   def index
     @current_page = if params[:current_page] then params[:current_page] else 1 end
-    per_page = 20
+    per_page = 15
     @notices = Notice.limit(per_page).order(id: :desc).all.offset((@current_page.to_i - 1) * per_page)
     @totalCnt = Notice.all.count
     @totalPageList = getTotalPageList(@totalCnt, per_page)
@@ -16,11 +16,13 @@ class NoticesController < ApplicationController
   # GET /notices/1
   # GET /notices/1.json
   def show
+    @notice.increment!(:notice_hits, 1)
   end
 
   # GET /notices/new
   def new
     @notice = Notice.new
+    @notice.notice_hits = 0;
   end
 
   # GET /notices/1/edit
@@ -75,6 +77,7 @@ class NoticesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def notice_params
-      params.require(:notice).permit(:notice_title, :notice_content)
+      params.require(:notice).permit(:notice_title, :notice_content, :notice_hits)
     end
 end
+ 

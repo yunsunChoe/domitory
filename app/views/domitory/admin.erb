@@ -1,38 +1,73 @@
-<h1>관리자페이지</h1>
+  <div class="container">
+	<div class="row">
+      <div class="col col-sm-12">
+        
+        <div class="panel">
+        <div class="panel-body">
+          관리자페이지  <span class="glyphicon glyphicon-heart-empty"></span>
+        </div>
+        </div>
+        
+      </div>
+  	</div>
+  </div>
 
-<h3>외박신청</h3>
-<form>
-  <table border = 1>
+<!-- Begin Body -->
+<div class="container">
+	<div class="row">
+              <div class="panel">
+                <h3>외박신청</h3>
+<form action = "/domitory/admin_sleepout" method = "POST">
+  <table class="table table-striped">
     <tr>
       <td>이름</td>
       <td>학번</td>
       <td>외박시작일자</td>
       <td>외박종료일자</td>
       <td>남은일자</td>
-      <td>승인</td>
+      <td>처리결과</td>
+      <td></td>
     </tr>
-        <% @sleepoutApply.each do |apply| %>
+        <% @sleepoutApply.each do |sleepout| %>
       <tr>
         <td>
+           <% if sleepout.domitory_id != nil %>
+           <%= sleepout.domitory.name %>
+           <%else%>domitory_id is null!
+           <%end%>
         </td>
-        <td><%= apply.student_number%></td>
-        <td><%= apply.apply_start_date%></td>
-        <td><%= apply.apply_end_date%></td>
-        <td>12</td>
-        <td><input type = button value = "승인대기"></td>
+        <td><%= sleepout.student_number%></td>
+        <td><%= sleepout.apply_start_date%></td>
+        <td><%= sleepout.apply_end_date%></td>
+        <td>
+           <% if sleepout.domitory_id != nil %>
+           <%= sleepout.domitory.sleepout_rest %>
+           <%else%>domitory_id is null!
+           <%end%>
+        </td>
+            <% if sleepout.apply == 2 %>
+            <td>승인완료</td>
+          <% elsif sleepout.apply == 1 %>
+            <td>승인대기</td>
+          <% else %>
+            <td></td>
+          <% end %>
+           <td><input type = submit value = "승인" onClick="this.disabled=true";><input type = hidden name = "id" value=<%= sleepout.id%>></td>
       </tr>
     <% end %>
 </table>
 </form>
 
 <h3>커뮤니티 신청</h3>
-<form>
-<table border = 1>
+<form action = "/domitory/admin_croom" method = "POST">
+<table class="table table-striped">
     <tr>
         <td>이름</td>
         <td>학번</td>
         <td>신청날짜</td>
-        <td>승인</td>
+        <td>처리결과</td>
+        <td></td>
+        <td></td>
     </tr>
     <% @crooms.each do |croom|%>
        <tr>
@@ -43,8 +78,22 @@
            </td>
           <td><%= croom.student_number %></td>          
           <td><%= croom.apply_date%></td>
-        <td><input type = button value = "승인대기"></td>
+          <% if croom.apply == 2 %>
+            <td>승인완료</td>
+          <% elsif croom.apply == 1 %>
+            <td>승인대기</td>
+          <% else %>
+            <td></td>
+          <% end %>
+        <td><input type = submit value = "승인"><input type = hidden name = "id" value = <%= croom.id%>></td>
+        <td><input type = button value = "승인취소"></td>
       </tr>
     <% end %>
 </table>
 </form>
+
+             	</div>
+      	</div> 
+  	</div>
+</div>
+

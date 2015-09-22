@@ -4,8 +4,8 @@ class CreateCroomdbs < ActiveRecord::Migration
 
       t.integer :domitory_id
       t.integer :student_number
-      t.string :apply_date
-      t.integer :apply
+      t.date :apply_date
+      t.integer :apply, default:0
       t.timestamps null: false
     end
   end
