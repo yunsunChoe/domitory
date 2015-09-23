@@ -1,71 +1,117 @@
+<head>
+  <script language="javascript">
+      function writeCheck() {
+          var form = document.writeform;
+  
+          if (form.domitory[major].value== "0")
+          {
+              alert("전공을 선택해주세요");
+              form.domitory[major].focus();
+              return;
+          }
+          else
+              alert("회원 가입이 완료되었습니다.")
+          form.submit();
+      }
+  </script>
+</head>
 
-<h2>Sign up</h2>
+<div class="container">
+  <div class="row">
+      <div class="col col-sm-12">
+        <div class="panel">
+        <div class="panel-body">
+          회원 가입  <span class="glyphicon glyphicon-heart-empty"></span>
+        </div>
+        </div>
+      </div>
+  	</div>
+</div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+<!-- Begin Body -->
+<div class="container">
+	<div class="row">
+      <div class="panel">
+          <h3>회원 가입</h3>
+  
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-  
-  <div>
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :student_number %><br />
-    <%= f.text_field :student_number %>
-  </div>
- 
-  <div class="field">
-    <%= select_tag 'domitory[major]', options_for_select([['선택해주세요', 0],
-    ['국어국문학과', '국어국문학과'], ['문예창작과', '문예창작과'], ['국사학과', '국사학과'],
-    ['영어과', '영어과'], ['일본어과', '일본어과'], ['프랑스어과', '프랑스어과'], ['독일어과', '독일어과'],
-    ['중어중국학과','중어중국학과'], ['경제학과','경제학과'], ['국제경영학과', '국제경영학과'], ['문헌정보학과','문헌정보학과'],
-    ['사회복지학과', '사회복지학과'], ['아동학과', '아동학과'], ['세무회계학과', '세무회계학과'], ['식품영양학과', '식품영양학과'],
-    ['응용화학과', '응용화학과'], ['보건관리학과', '보건관리학과'], ['체육학과', '체육학과'], ['컴퓨터학과', '컴퓨터학과'],
-    ['정보통계학과', '정보통계학과'], ['약학과', '약학과'], ['회화과', '회화과'], ['디지털공예과', '디지털공예과'],
-    ['큐레이터학과', '큐레이터학과'], ['피아노과', '피아노과'], ['관현악과', '관현악과'], ['성악과', '성악과'],
-    ['패션디자인학과', '패션디자인학과'], ['패션디자인학과2', '패션디자인학과2'], ['시각&실내디자인학과', '시각&실내디자인학과'], ['미디어디자인학과', '미디어디자인학과'],
-    ['방송연예과2', '방송연예과2'], ['실용음악과', '실용음악과'], ['무용과', '무용과'], ['모델과', '모델과']], 0)%>
-  
-  </div>
-  
-  <div class="field">
-    <%= f.label :user_phone_number %><br />
-    <%= f.text_field :user_phone_number %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :parent_phone_number %><br />
-    <%= f.text_field :parent_phone_number %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :room_number %><br />
-    <%= f.text_field :room_number %>
-  </div>
-  
-  
-
-  <div class="actions">
-    <input type="submit" name="commit" value="Sign up" OnClick="javascript:writeCheck()">
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+  <table class="table table-striped" style="border: 1px solid #ccc;">
+    <tr>
+      <div class="field">
+        <td><%= f.label :email %></td>
+        <td><%= f.email_field :email %></td>
+      </div>
+    </tr>
+    
+    <tr>
+      <div class="field">
+        <td><%= f.label :password %></td>
+        <% if @minimum_password_length %>
+        
+        <% end %>
+        <td><%= f.password_field :password, autocomplete: "off" %><em>(<%= @minimum_password_length %> characters minimum)</em></td>
+      </div>
+    </tr>
+    
+    <tr>
+      <div class="field">
+        <td><%= f.label :password_confirmation %></td>
+        <td><%= f.password_field :password_confirmation, autocomplete: "off" %></td>
+      </div>
+    </tr>
+    <tr>
+      <div>
+        <td><%= f.label :name %></td>
+        <td><%= f.text_field :name, autofocus: true %></td>
+      </div>
+    </tr>
+    <tr>  
+      <div class="field">
+        <td><%= f.label :student_number %></td>
+        <td><%= f.text_field :student_number %></td>
+      </div>
+    </tr>
+    <tr>
+      <div class="field">
+        <td><%= f.label :major %></td>
+        <td><%= select_tag 'domitory[major]', options_for_select([['선택해주세요', 0],
+        ['국어국문학과', '국어국문학과'], ['문예창작과', '문예창작과'], ['국사학과', '국사학과'],
+        ['영어과', '영어과'], ['일본어과', '일본어과'], ['프랑스어과', '프랑스어과'], ['독일어과', '독일어과'],
+        ['중어중국학과','중어중국학과'], ['경제학과','경제학과'], ['국제경영학과', '국제경영학과'], ['문헌정보학과','문헌정보학과'],
+        ['사회복지학과', '사회복지학과'], ['아동학과', '아동학과'], ['세무회계학과', '세무회계학과'], ['식품영양학과', '식품영양학과'],
+        ['응용화학과', '응용화학과'], ['보건관리학과', '보건관리학과'], ['체육학과', '체육학과'], ['컴퓨터학과', '컴퓨터학과'],
+        ['정보통계학과', '정보통계학과'], ['약학과', '약학과'], ['회화과', '회화과'], ['디지털공예과', '디지털공예과'],
+        ['큐레이터학과', '큐레이터학과'], ['피아노과', '피아노과'], ['관현악과', '관현악과'], ['성악과', '성악과'],
+        ['패션디자인학과', '패션디자인학과'], ['패션디자인학과2', '패션디자인학과2'], ['시각&실내디자인학과', '시각&실내디자인학과'], ['미디어디자인학과', '미디어디자인학과'],
+        ['방송연예과2', '방송연예과2'], ['실용음악과', '실용음악과'], ['무용과', '무용과'], ['모델과', '모델과']], 0)%></td>
+      
+      </div>
+    </tr>
+    <tr>  
+      <div class="field">
+        <td><%= f.label :user_phone_number %></td>
+        <td><%= f.text_field :user_phone_number %></td>
+      </div>
+    </tr>
+    <tr>  
+      <div class="field">
+        <td><%= f.label :parent_phone_number %></td>
+        <td><%= f.text_field :parent_phone_number %></td>
+      </div>
+    </tr>
+    <tr>  
+      <div class="field">
+        <td><%= f.label :room_number %></td>
+        <td><%= f.text_field :room_number %></td>
+      </div>
+    </tr>
+  </table>  
+      
+    
+      <div class="actions" align="center">
+        <input class="btn btn-default" type="submit" name="commit" value="Sign up" OnClick="javascript:writeCheck()">
+      </div>
+    <% end %>
+    
+    <%= render "devise/shared/links" %>

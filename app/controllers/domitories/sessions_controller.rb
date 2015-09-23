@@ -1,6 +1,5 @@
 class Domitories::SessionsController < Devise::SessionsController
 # before_filter :configure_sign_in_params, only: [:create]
-
   def create
     user = User.find_by_email(params[:email])
     if user && user.authenticate(params[:password])

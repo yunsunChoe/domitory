@@ -44,10 +44,6 @@ ActiveRecord::Schema.define(version: 20150922090304) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
     t.string   "name"
@@ -59,9 +55,7 @@ ActiveRecord::Schema.define(version: 20150922090304) do
     t.integer  "sleepout_rest",          default: 12
   end
 
-  add_index "domitories", ["confirmation_token"], name: "index_domitories_on_confirmation_token", unique: true
   add_index "domitories", ["email"], name: "index_domitories_on_email", unique: true
-  add_index "domitories", ["reset_password_token"], name: "index_domitories_on_reset_password_token", unique: true
 
   create_table "notices", force: :cascade do |t|
     t.string   "notice_title"

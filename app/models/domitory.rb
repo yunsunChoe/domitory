@@ -5,6 +5,4 @@ class Domitory < ActiveRecord::Base
   has_many :sleepoutdbs
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-         private
-  
 end

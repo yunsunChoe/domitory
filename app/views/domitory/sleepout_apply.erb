@@ -85,9 +85,9 @@
                 </tr>
                 <tr align = center>
                      <td>외박시작일자</td>
-                     <td><input type = date name="apply_start_date"></td>
+                     <td><input type = date name="apply_start_date" value = <%= Time.now.strftime("%F") %> min = <%= Time.now.strftime("%F") %> max = <%= Time.now.strftime("%F") %>></td>
                      <td>외박종료일자</td>
-                     <td><input type = date name="apply_end_date"></td>
+                     <td><input type = date name="apply_end_date" value = <%= Time.now.strftime("%Y") %> min = <%= Time.now.strftime("%Y%m1") %> max = <%= Time.now.strftime("%Y%m%d") %>></td>
                      <td>남은외박횟수</td>
                      <td><%= current_domitory.sleepout_rest%></td>
                 </tr>
