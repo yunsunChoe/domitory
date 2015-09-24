@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922090304) do
+ActiveRecord::Schema.define(version: 20150921102428) do
 
   create_table "communities", force: :cascade do |t|
     t.string   "com_category"
@@ -34,8 +34,15 @@ ActiveRecord::Schema.define(version: 20150922090304) do
   end
 
   create_table "domitories", force: :cascade do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                               null: false
+    t.string   "encrypted_password",                  null: false
+    t.string   "name"
+    t.integer  "student_number"
+    t.string   "major"
+    t.string   "user_phone_number"
+    t.string   "parent_phone_number"
+    t.string   "room_number"
+    t.integer  "sleepout_rest",          default: 12
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -46,16 +53,10 @@ ActiveRecord::Schema.define(version: 20150922090304) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "name"
-    t.integer  "student_number"
-    t.string   "major"
-    t.string   "user_phone_number"
-    t.string   "parent_phone_number"
-    t.string   "room_number"
-    t.integer  "sleepout_rest",          default: 12
   end
 
   add_index "domitories", ["email"], name: "index_domitories_on_email", unique: true
+  add_index "domitories", ["reset_password_token"], name: "index_domitories_on_reset_password_token", unique: true
 
   create_table "notices", force: :cascade do |t|
     t.string   "notice_title"

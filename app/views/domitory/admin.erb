@@ -52,8 +52,13 @@
           <% else %>
             <td></td>
           <% end %>
-           <td><input type = submit value = "승인" onClick="this.disabled=true";><input type = hidden name = "id" value=<%= sleepout.id%>></td>
-      </tr>
+           <td>
+              <% if sleepout.domitory.sleepout_rest <= 0 || (sleepout.domitory.sleepout_rest < (sleepout.apply_end_date - sleepout.apply_start_date)) %>
+              <input type = button class="btn btn-default"  value = "승인" disabled><input type = hidden name = "id" value=<%= sleepout.id%>>
+              <%else%>
+              <input type = submit class="btn btn-default"  value = "승인"><input type = hidden name = "id" value=<%= sleepout.id%>></td>
+              <%end%>
+              </tr>
     <% end %>
 </table>
 </form>
@@ -86,11 +91,11 @@
             <td></td>
           <% end %>
         <td><input type = submit value = "승인"><input type = hidden name = "id" value = <%= croom.id%>></td>
-        <td><input type = button value = "승인취소"></td>
       </tr>
     <% end %>
 </table>
 </form>
+
 
              	</div>
       	</div> 

@@ -1,79 +1,107 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="container">
+  <div class="row">
+      <div class="col col-sm-12">
+        <div class="panel">
+        <div class="panel-body">
+          회원 정보 수정  <span class="glyphicon glyphicon-heart-empty"></span>
+        </div>
+        </div>
+      </div>
+  	</div>
+</div>
+
+<!-- Begin Body -->
+<div class="container">
+	<div class="row">
+      <div class="panel">
+          <h3>회원 정보 수정</h3>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= devise_error_messages! %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
+  <table class="table table-striped" style="border: 1px solid #ccc;">
+    <tr>
+      <div class="field">
+        <td><%= f.label :email %></td>
+        <td><%= f.email_field :email, autofocus: true %></td>
+      </div>
+    </tr>
   
-  <div>
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true %>
-  </div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %></td>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></td>
+    <% end %>
   
-  <div class="field">
-    <%= f.label :student_number %><br />
-    <%= f.text_field :student_number %>
-  </div>
- 
-  <div class="field">
-    <%= select_tag(:major_id,options_for_select([['선택해주세요', 0],
-    ['국어국문학과', 1], ['문예창작과', 2], ['국사학과', 3],
-    ['영어과', 4], ['일본어과', 5], ['프랑스어과', 6], ['독일어과', 7],
-    ['중어중국학과', 8], ['경제학과', 9], ['국제경영학과', 10], ['문헌정보학과', 11],
-    ['사회복지학과', 12], ['아동학과', 13], ['세무회계학과', 14], ['식품영양학과', 15],
-    ['응용화학과', 16], ['보건관리학과', 17], ['체육학과', 18], ['컴퓨터학과', 19],
-    ['정보통계학과', 20], ['약학과', 21], ['회화과', 22], ['디지털공예과', 23],
-    ['큐레이터학과', 24], ['피아노과', 25], ['관현악과', 26], ['성악과', 27],
-    ['패션디자인학과', 28], ['패션디자인학과2', 29], ['시각&실내디자인학과', 30], ['미디어디자인학과', 31],
-    ['방송연예과2', 32], ['실용음악과', 33], ['무용과', 34], ['모델과', 35]], 0)) %>
-  
-  </div>
-  
-  <div class="field">
-    <%= f.label :user_phone_number %><br />
-    <%= f.text_field :user_phone_number %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :parent_phone_number %><br />
-    <%= f.text_field :parent_phone_number %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :room_number %><br />
-    <%= f.text_field :room_number %>
-  </div>
-  
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
+  <tr>
+    <div class="field">
+      <td><%= f.label :password %> <i>(leave blank if you don't want to change it)</i></td>
+      <td><%= f.password_field :password, autocomplete: "off" %></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><%= f.label :password_confirmation %></td>
+      <td><%= f.password_field :password_confirmation, autocomplete: "off" %></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i></td>
+      <td><%= f.password_field :current_password, autocomplete: "off" %></td>
+    </div>
+  </tr>
+  <tr>
+    <div>
+      <td><%= f.label :name %></td>
+      <td><%= f.text_field :name, autofocus: true %></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><%= f.label :student_number %></td>
+      <td><%= f.text_field :student_number %></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><%= f.label :major %></td>
+      <td><%= select_tag(:major_id,options_for_select([['선택해주세요', 0],
+      ['국어국문학과', 1], ['문예창작과', 2], ['국사학과', 3],
+      ['영어과', 4], ['일본어과', 5], ['프랑스어과', 6], ['독일어과', 7],
+      ['중어중국학과', 8], ['경제학과', 9], ['국제경영학과', 10], ['문헌정보학과', 11],
+      ['사회복지학과', 12], ['아동학과', 13], ['세무회계학과', 14], ['식품영양학과', 15],
+      ['응용화학과', 16], ['보건관리학과', 17], ['체육학과', 18], ['컴퓨터학과', 19],
+      ['정보통계학과', 20], ['약학과', 21], ['회화과', 22], ['디지털공예과', 23],
+      ['큐레이터학과', 24], ['피아노과', 25], ['관현악과', 26], ['성악과', 27],
+      ['패션디자인학과', 28], ['패션디자인학과2', 29], ['시각&실내디자인학과', 30], ['미디어디자인학과', 31],
+      ['방송연예과2', 32], ['실용음악과', 33], ['무용과', 34], ['모델과', 35]], 0)) %></td>
+    </div>
+  </tr>
+  <tr>
+    <div class="field">
+      <td><%= f.label :user_phone_number %></td>
+      <td><%= f.text_field :user_phone_number %></td>
+    </div>
+  </tr>
+  <tr>  
+    <div class="field">
+      <td><%= f.label :parent_phone_number %></td>
+      <td><%= f.text_field :parent_phone_number %></td>
+    </div>
+  </tr>
+  <tr>  
+    <div class="field">
+      <td><%= f.label :room_number %></td>
+      <td><%= f.text_field :room_number %></td>
+    </div>
+  </tr>
+  <tr>
+</table> 
+    <div class="actions" align = "center">
+      <%= f.submit "Update" %>
+    </div>
 <% end %>
 
-<h3>Cancel my account</h3>
+<h3>회원 탈퇴</h3>
 
-<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
+<p>탈퇴하시겠습니까? <%= button_to "회원 탈퇴", registration_path(resource_name), data: { confirm: "정말 탈퇴하시겠습니까?" }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to "뒤로 가기", :back %>

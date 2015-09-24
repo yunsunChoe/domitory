@@ -14,7 +14,7 @@ class DomitoryController < ApplicationController
     end
     
     def croom_apply
-    
+      
     end
     
     def croom
@@ -30,7 +30,6 @@ class DomitoryController < ApplicationController
     
     def sleepout_apply
        # @room_number = Domitory.find(session["student_number"]).room_number
-       
     end
     def sleepout
         post = Sleepoutdb.new
@@ -40,6 +39,7 @@ class DomitoryController < ApplicationController
         post.apply_end_date = params[:apply_end_date]
         post.apply = 1
         post.save
+ 
         
         redirect_to '/domitory/sleepout_apply'
     end

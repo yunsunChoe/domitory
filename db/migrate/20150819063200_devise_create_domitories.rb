@@ -3,9 +3,15 @@ class DeviseCreateDomitories < ActiveRecord::Migration
   def change
       create_table(:domitories) do |t|
       ## Database authenticatable
-      t.string :email,              null: false, default: ""
-      t.string :encrypted_password, null: false, default: ""
-
+      t.string :email,                null: false
+      t.string :encrypted_password,   null: false
+      t.string :name
+      t.integer :student_number
+      t.string :major
+      t.string :user_phone_number
+      t.string :parent_phone_number
+      t.string :room_number
+      t.integer :sleepout_rest, default: 12
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
@@ -36,7 +42,7 @@ class DeviseCreateDomitories < ActiveRecord::Migration
     end
 
     add_index :domitories, :email,                unique: true
-    # add_index :domitories, :reset_password_token, unique: true
+    add_index :domitories, :reset_password_token, unique: true
     # add_index :domitories, :confirmation_token,   unique: true
     # add_index :domitories, :unlock_token,         unique: true
   end
