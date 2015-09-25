@@ -1,5 +1,5 @@
 class DeviseCreateDomitories < ActiveRecord::Migration
-  #validates_uniqueness_of :email
+  validates_uniqueness_of :email
   def change
       create_table(:domitories) do |t|
       ## Database authenticatable

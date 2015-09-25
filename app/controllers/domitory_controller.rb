@@ -70,5 +70,8 @@ class DomitoryController < ApplicationController
         one_post.save
         redirect_to :action => "admin"
     end
+    def email_send
+        NumberMailer.welcom_email.deliver_now #지금 배달 해라
+    end
     
 end

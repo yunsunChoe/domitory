@@ -1,6 +1,8 @@
 <div class="container">
 	<div class="row">
   		<div class="panel">
+  		  
+        <br>
 <%= form_for(@notice) do |f| %>
   <% if @notice.errors.any? %>
     <div id="error_explanation">
@@ -13,24 +15,33 @@
       </ul>
     </div>
   <% end %>
- 
-<table class="type02">
+ <center>
+<table class="type09">
+  <thead>
+    <tr>
+      <th scope="cols" colspan = 2><center><h2>공지사항</h2></center></th>
+    </tr>
+  </thead>
+  <tbody>
   <tr>
   <div class="field">
-    <th scope="row"><%= f.label :제목 %></th>
+    <th scope="row"><center><%= f.label :제목 %></center></th>
     <td><%= f.text_field :notice_title, size:70 %></td>
   </div>
   </tr>
   <tr>
   <div class="field">
-    <th scope="row"><%= f.label :내용 %></td>
-    <td><%= f.text_area :notice_content, cols:80, rows:30 %></td>
+    <th scope="row" valign = "center"><center><%= f.label :내용 %></center></td>
+    <td><%= f.text_area :notice_content, cols:80, rows:25 %></td>
   </div>
   </tr>
+  </tbody>
 </table>
+</center>
+<br>
 <center>
   <div class="actions">
-    <%= f.submit "확인", class: 'btn btn-default', align:"center" %>
+    <%= f.submit "등록", class: 'btn btn-default', align:"center" %>
   </div>
 </center>
 <% end %>

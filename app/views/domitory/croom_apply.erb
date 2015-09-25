@@ -1,4 +1,20 @@
+<head>
+<script language="javascript">
+    function writeCheck() {
+        var form = document.writeform;
 
+        if (form.croom_reason.value=="first")
+        {
+            alert("대실사유를 선택해주세요");
+            form.sleepout_reason.focus();
+            return;
+        }
+        else
+            alert("신청이 완료되었습니다.")
+        form.submit();
+    }
+</script>
+</head>
 
 <div class="container">
 	<div class="row">
@@ -17,43 +33,37 @@
 <!-- Begin Body -->
 <div class="container">
 	<div class="row">
-  		
-
-              <div class="panel">
+  		<div class="panel">
 <center>
 <br><Br>
-  <form action = "/domitory/croom" method = "POST"> 
+  <form action = "/domitory/croom" method = "POST"  name=writeform> 
 <input type="hidden" name="domitory_id" value="<%= current_domitory.id %>"/>
   <input type = hidden value = "<%= current_domitory.student_number %>" name = "student_number">
   <input type = hidden value = "<%= current_domitory.name %>" name = "student_name">
   <input type = hidden value = "<%= current_domitory.room_number %>" name = "room_number">
-<table class="table table-hover">
+<table class="type09">
+  <thead>
+  <tr align = center><th colspan = 2 scope="cols"><center><font size = "5">커뮤니티룸 신청</font></center></th></tr>
+  </thead>
+  <tbody>
+  <tr><th scope="row"><center>학&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;번</center></th><td><%= current_domitory.student_number %></td></tr>
+  <tr><th scope="row"><center>이&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;름</center></th><td><%= current_domitory.name %></td></tr>
+  <tr><th scope="row"><center>호&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;실</center></th><td><%= current_domitory.room_number %></td></tr>
 <tr>
-  <td align = center>학번</td><td><%= current_domitory.student_number %></td>
-</tr>
-<tr>
-  <td align = center>이름</td><td><%= current_domitory.name %></td>
+  <th scope="row"><center>대실날짜</center></th><td colspan = 2><input type = date name = "apply_date" value = <%= Time.now.strftime("%F") %> min = <%= Time.now.strftime("%F") %> max = <%= Time.now.strftime("%F") %>></td>
   </tr>
   <tr>
-  <td align = center>호실</td><td><%= current_domitory.room_number %></td>
-</tr>
-<tr>
-  <td align = center>대실날짜</td><td colspan = 2><input type = date name = "apply_date" value = <%= Time.now.strftime("%F") %> min = <%= Time.now.strftime("%F") %> max = <%= Time.now.strftime("%F") %>></td>
-  </tr>
-  <tr>
-  <td align = center>대실사유</td><td colspan = 2><select name="croom_reason">
-                <option selected>선택하세요</option>
-                <option>야작(과제)</option>
-                <option>시험</option>
-                <option>기타</option>
+  <th scope="row"><center>대실사유</center></th><td colspan = 2><select name="croom_reason">
+                <option value="first" selected>선택하세요</option>
+                <option value="hw">야작(과제)</option>
+                <option value="exam">시험</option>
+                <option value="etc">기타</option>
             </select></td>
 </tr>
+</tbody>
 </table>
-<% if @croom.where(:student_number => current_domitory.student_number, :apply_date => Time.now.strftime("%F")).apply == 0 %>
-<input class="btn btn-default" type = submit value = "신청">
-<% else %>
-<input class="btn btn-default" type = submit value = "신청" disabled>
-<% end %>
+
+<input class="btn btn-default" type = submit value = "신청" OnClick="javascript:writeCheck();">
 <input class="btn btn-default" type = reset value = "취소">
 </form>
 </center>

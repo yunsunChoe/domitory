@@ -1,3 +1,8 @@
+<div class="container">
+	<div class="row">
+  		<div class="panel">
+  		  
+        <br>
 <%= form_for (@community) do |f| %>
   <% if @community.errors.any? %>
     <div id="error_explanation">
@@ -10,7 +15,14 @@
       </ul>
     </div>
   <% end %>
-
+<table class="type09">
+  <thead>
+    <tr>
+      <th scope="cols" colspan = 2><center><h2>공지사항</h2></center></th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
   <div class="field">
     <%= f.label :분류 %><br>
     <%= f.select :com_category, ['잡담', '벼룩시장', '요청']%>
@@ -34,3 +46,6 @@
     <%= f.submit "확인", class: 'btn btn-default'%>
   </div>
 <% end %>
+      </div>
+  </div> 
+</div>
