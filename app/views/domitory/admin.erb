@@ -1,13 +1,12 @@
-  <div class="container">
-	<div class="row">
-      <div class="col col-sm-12">
-        
+
+<div class="container">
+  <div class="row">
+    <div class="col col-sm-12">
         <div class="panel">
         <div class="panel-body">
           관리자페이지  <span class="glyphicon glyphicon-heart-empty"></span>
         </div>
         </div>
-        
       </div>
   	</div>
   </div>
@@ -27,7 +26,7 @@
       <td>남은일자</td>
       <td>처리결과</td>
       <td></td>
-    </tr>
+         </tr>
         <% @sleepoutApply.each do |sleepout| %>
       <tr>
         <td>
@@ -56,8 +55,14 @@
               <% if sleepout.domitory.sleepout_rest <= 0 || (sleepout.domitory.sleepout_rest < (sleepout.apply_end_date - sleepout.apply_start_date)) %>
               <input type = button class="btn btn-default"  value = "승인" disabled><input type = hidden name = "id" value=<%= sleepout.id%>>
               <%else%>
-              <input type = submit class="btn btn-default"  value = "승인"><input type = hidden name = "id" value=<%= sleepout.id%>></td>
+              <% if sleepout.apply == 2 %>
+              <input type = submit class="btn btn-default"  value = "승인" onClick="this.disabled='true'"><input type = hidden name = "id" value=<%= sleepout.id%>>
+              <%else%>
+              <input type = submit class="btn btn-default"  value = "승인"><input type = hidden name = "id" value=<%= sleepout.id%>>
               <%end%>
+              <%end%>
+           </td>
+           </form>
               </tr>
     <% end %>
 </table>
@@ -66,31 +71,31 @@
 <h3>커뮤니티 신청</h3>
 <form action = "/domitory/admin_croom" method = "POST">
 <table class="table table-striped">
-    <tr>
-        <td>이름</td>
-        <td>학번</td>
-        <td>신청날짜</td>
-        <td>처리결과</td>
-        <td></td>
-        <td></td>
+    <tr align="center">
+        <td valign="middle">이름</td>
+        <td valign="middle">학번</td>
+        <td valign="middle">신청날짜</td>
+        <td valign="middle">처리결과</td>
     </tr>
     <% @crooms.each do |croom|%>
-       <tr>
-         <td>
+       <tr align="center">
+         <td rowspan="2">
            <% if croom.domitory_id != nil %>
            <%= croom.domitory.name %>
            <%else%>domitory_id is null!<%end%>
            </td>
-          <td><%= croom.student_number %></td>          
-          <td><%= croom.apply_date%></td>
-          <% if croom.apply == 2 %>
-            <td>승인완료</td>
-          <% elsif croom.apply == 1 %>
-            <td>승인대기</td>
-          <% else %>
-            <td></td>
-          <% end %>
-        <td><input type = submit value = "승인"><input type = hidden name = "id" value = <%= croom.id%>></td>
+           <td rowspan="2"><%= croom.student_number %></td>          
+           <td rowspan="2"><%= croom.apply_date%></td>
+           <td border=0><% if croom.apply == 2 %>
+            승인완료</td>
+              <% elsif croom.apply == 1 %>
+                승인대기</td>
+              <% else %>
+              <% end %>
+            </td>
+        </tr> 
+        <tr align="center">
+        <td><input type = submit class="btn btn-default" value = "승인"><input type = hidden name = "id" value = <%= croom.id%>></td>
       </tr>
     <% end %>
 </table>

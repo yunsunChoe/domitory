@@ -1,19 +1,43 @@
-<%= simple_form_for(@proposal) do |f| %>
-<% if @proposal.errors.any? %>
-  <%= f.error_notification %>
-  <% @proposal.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
+
+<%=form_for(@proposal) do |f| %>
+  <% if @proposal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@proposal.errors.count, "error") %> prohibited this notice from being saved:</h2>
+
+      <ul>
+      <% @proposal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
   <% end %>
-<%end%>
-
-  <div class="form-inputs">
-    <%= f.input :p_category, label: "분류", label_html: { class: "input-group-addon"},  collection: ["질문", "수리요청"], prompt: "선택해주세요.", :include_blank => false %>
-    <%= f.input :p_title, label: "제목" %>
-    <%= f.input :p_content, label: "내용", :as => :text%>
-    <%= f.hidden_field :p_studentID, :value =>current_domitory.student_number%>
+  
+<table>
+  <tr>
+  <div class="field">
+    <td width = "50" align = center><%= f.label :분류 %></td>
+    <td><%= f.select :p_category, [["질문"], ["수리요청"]] %></td>
+  </div>
+  </tr>
+  <div class="field">
+    <td width = "50" align = center><%= f.label :제목 %></td>
+    <td><%= f.text_field :p_title, size:70 %></td>
+  </div>
+  </tr>
+  <tr>
+  <div class="field">
+    <td width = "50" align = center><%= f.label :내용 %></td>
+    <td><%= f.text_area :p_content, cols:80, rows:30 %></td>
+  </div>
+  </tr>
+  <div class="field">
+    <td ><% f.label :숨김 %></td>
+    <td><%= f.hidden_field :p_studentID, :value => current_domitory.student_number %></td>
+  </div>
+  </tr>
+</table>
+  <div class="actions">
+    <%= f.submit "확인", class: 'btn btn-default' %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit, class: 'btn btn-default' %>
-  </div>
 <% end %>

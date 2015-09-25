@@ -1,3 +1,4 @@
+
 /* bootstrap 3 helpers */
 
 .navbar-form input, .form-inline input {
@@ -9,7 +10,7 @@
 /* custom theme */
 header {
 	min-height:230px;
-  	margin-bottom:5px;
+  	margin-bottom:0px;
 }
 
 @media (min-width: 979px) {
@@ -57,7 +58,7 @@ h3.highlight  {
 }
 
 .navbar {
-     padding-top: 30px;
+     padding-top: 20px;
 	background-color:#EB7C96;
   	color:#ffffff;
     border:0;
@@ -119,6 +120,44 @@ h3.highlight  {
 .panel {
 	padding-left:27px;
     padding-right:27px;
+}
+
+.footer {
+  bottom: 0;
+  left: 0;
+  height: 80px;
+  background-color: #668761;
+  width: 100%;
+}
+a:link {text-decoration: none; color: black;}
+a:visited {text-decoration: none; color: black;}
+
+table.type02 {
+    border-collapse: separate;
+    border-spacing: 0;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 1px solid #ccc;
+ 
+}
+table.type02 th {
+    width: 150px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    background: #eee;
+}
+table.type02 td {
+    width: 350px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
 }
 
 /* end theme */

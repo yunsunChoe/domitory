@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,7 +21,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if domitory_signed_in? %> 
+<% if domitory_signed_in? %>
 <nav class="navbar navbar-static">
   
   <div class="row">
@@ -30,35 +31,28 @@
         </div></center>
       </div>
     </div>
-    <div class="container">
+    <div class="container" style="margin-bottom=0px;">
       <a class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
         <span class="glyphicon glyphicon-chevron-down"></span>
-      </a>
+      </a><br>
       <div class="nav-collapse collase">
-        
         <ul class="nav navbar-nav"> 
-          <li>
-            <a href="/domitory/index">
-            <i class="glyphicon glyphicon-home"></i>
-          </a>
-          </li>
+          <li><a href="/domitory/index"><center><img src="../main_logo.png"/><Br>WELCOME TO COTTON-HOUSE</center></a></li>
+        </ul>
+        <ul class="nav navbar-right navbar-nav" style="padding-top:40px;">
+          <%if current_domitory.name == "admin"%>
+            <li><a href="/domitory/admin">관리자</a></li>
+          <%end%>
           <li><a href="/notices">공지사항</a></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">신청하기&nbsp;<i class="glyphicon glyphicon-chevron-down"></i></a>
             <ul class="dropdown-menu">
-              <li><a href="/domitory/sleepout_apply">외박신청</a></li>
-              <li><a href="/domitory/croom_apply">커뮤니티신청</a></li>
+              <li><a href="/domitory/sleepout_apply">외박 신청</a></li>
+              <li><a href="/domitory/croom_apply">커뮤니티 룸 신청</a></li>
              </ul>
           </li>  
           <li><a href="/proposals">건의사항</a></li>
           <li><a href="/communities">커뮤니티</a></li>
-          
-        </ul>
-        <ul class="nav navbar-right navbar-nav">
-          <%if current_domitory.name == "admin"%>
-            <li><a href="/domitory/admin">관리자</a></li>
-          <%end%>
-          <li style="padding-top: 15px;"><%=current_domitory.name%>님 어서오세요</li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> <i class="glyphicon glyphicon-chevron-down"></i></a>
             <ul class="dropdown-menu">
@@ -79,6 +73,16 @@
 </nav><!-- /.navbar -->
 <% end %>
 <%= yield %>
+<% if domitory_signed_in? %>
+<footer class="footer">
+  <center>
+    <br>
+      <font color = "white" size = "3">Copyright © Domitory Website 2015</font>
+      <br>
+      <a href="#">Back to top</a>
+  </center>
+    </footer>
+<%end%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../bootstrap.min.js"></script>
 </body>

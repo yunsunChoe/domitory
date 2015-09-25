@@ -14,7 +14,7 @@ class DomitoryController < ApplicationController
     end
     
     def croom_apply
-      
+      @croom = Croomdb.all
     end
     
     def croom
@@ -51,6 +51,9 @@ class DomitoryController < ApplicationController
         @domitory = Domitory.all
         @crooms = Croomdb.all
         @sleepoutApply = Sleepoutdb.all
+        if current_domitory.name != "admin"
+            redirect_to '/domitory/admin_error'
+        end
     end
 
     def admin_croom
@@ -67,8 +70,5 @@ class DomitoryController < ApplicationController
         one_post.save
         redirect_to :action => "admin"
     end
-    def email_send
-        AuthenticationMail.welcom_email.deliver_now #지금 배달 해라
-        redirect_to '/'
-    end
+    
 end

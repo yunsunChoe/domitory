@@ -23,19 +23,25 @@
 <center>
 <br><Br>
   <form action = "/domitory/croom" method = "POST"> 
-<table class="table table-bordered">
-<tr>
-  <input type="hidden" name="domitory_id" value="<%= current_domitory.id %>"/>
+<input type="hidden" name="domitory_id" value="<%= current_domitory.id %>"/>
   <input type = hidden value = "<%= current_domitory.student_number %>" name = "student_number">
   <input type = hidden value = "<%= current_domitory.name %>" name = "student_name">
   <input type = hidden value = "<%= current_domitory.room_number %>" name = "room_number">
-  <td>학번</td><td><%= current_domitory.student_number %></td>
-  <td>이름</td><td><%= current_domitory.name %></td>
-  <td>호실</td><td><%= current_domitory.room_number %></td>
+<table class="table table-hover">
+<tr>
+  <td align = center>학번</td><td><%= current_domitory.student_number %></td>
 </tr>
 <tr>
-  <td>대실날짜</td><td colspan = 2><input type = date name = "apply_date" value = <%= Time.now.strftime("%F") %> min = <%= Time.now.strftime("%F") %> max = <%= Time.now.strftime("%F") %>></td>
-  <td>대실사유</td><td colspan = 2><select name="croom_reason">
+  <td align = center>이름</td><td><%= current_domitory.name %></td>
+  </tr>
+  <tr>
+  <td align = center>호실</td><td><%= current_domitory.room_number %></td>
+</tr>
+<tr>
+  <td align = center>대실날짜</td><td colspan = 2><input type = date name = "apply_date" value = <%= Time.now.strftime("%F") %> min = <%= Time.now.strftime("%F") %> max = <%= Time.now.strftime("%F") %>></td>
+  </tr>
+  <tr>
+  <td align = center>대실사유</td><td colspan = 2><select name="croom_reason">
                 <option selected>선택하세요</option>
                 <option>야작(과제)</option>
                 <option>시험</option>
@@ -43,8 +49,11 @@
             </select></td>
 </tr>
 </table>
-
+<% if @croom.where(:student_number => current_domitory.student_number, :apply_date => Time.now.strftime("%F")).apply == 0 %>
 <input class="btn btn-default" type = submit value = "신청">
+<% else %>
+<input class="btn btn-default" type = submit value = "신청" disabled>
+<% end %>
 <input class="btn btn-default" type = reset value = "취소">
 </form>
 </center>

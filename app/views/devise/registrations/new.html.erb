@@ -1,21 +1,29 @@
 <head>
-  <script language="javascript">
-      function writeCheck() {
-          var form = document.writeform;
-  
-          if (form.domitory[major].value== "first")
-          {
-              alert("전공을 선택해주세요");
-              form.domitory[major].focus();
-              return;
-          }
-          else
-              alert("회원 가입이 완료되었습니다.")
-          form.submit();
-      }
-  </script>
-</head>
+<script language="javascript">
+    function writeCheck() {
+        var form = document.writeform;
 
+        if (form.domitory[major].value=="first")
+        {
+            alert("과를 선택해주세요");
+            form.domitory[major].focus();
+            return;
+        }
+        // if (!form.subject.value) {
+        //     alert("제목을 적어주세요");
+        //     form.subject.focus();
+        //     return;
+        // }
+
+        else
+            alert("외박신청이 완료되었습니다.")
+        form.submit();
+    }
+    function cancelCheck() {
+        alert("외박신청이 취소되었습니다.")
+    }
+</script>
+</head>
 <div class="container">
   <div class="row">
       <div class="col col-sm-12">
@@ -27,55 +35,56 @@
       </div>
   	</div>
 </div>
-
+<br><br><br>
 <!-- Begin Body -->
 <div class="container">
 	<div class="row">
       <div class="panel">
-          <h3>회원 가입</h3>
+          <h3>회원 가입<br><br><br></h3>
+          
   
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { name: "writeform" }) do |f| %>
   <%= devise_error_messages! %>
-  <table class="table table-striped" style="border: 1px solid #ccc;">
+  <table class="table table-striped" style="border: 1px solid #ccc;margin-left=20px;margin-right=20px;">
     <tr>
       <div class="field">
-        <td><%= f.label :email %></td>
-        <td><%= f.email_field :email, autofocus: true  %></td>
+        <td bgcolor="#FFEAEA"><%= f.label :"이메일" %></td>
+        <td bgcolor="#FFEAEA"><%= f.email_field :email, autofocus: true  %></td>
       </div>
     </tr>
     
     <tr>
       <div class="field">
-        <td><%= f.label :password %></td>
+        <td bgcolor="#FFffff"><%= f.label :"비밀번호" %></td>
         <% if @minimum_password_length %>
         
         <% end %>
-        <td><%= f.password_field :password, autocomplete: "off" %><em>(<%= @minimum_password_length %> characters minimum)</em></td>
+        <td bgcolor="#FFffff"><%= f.password_field :password, autocomplete: "off" %><em>(<%= @minimum_password_length %> characters minimum)</em></td>
       </div>
     </tr>
     
     <tr>
       <div class="field">
-        <td><%= f.label :password_confirmation %></td>
-        <td><%= f.password_field :password_confirmation, autocomplete: "off" %></td>
+        <td bgcolor="#FFEAEA"><%= f.label :"비밀번호 확인" %></td>
+        <td bgcolor="#FFEAEA"><%= f.password_field :password_confirmation, autocomplete: "off" %></td>
       </div>
     </tr>
     <tr>
       <div>
-        <td><%= f.label :name %></td>
-        <td><%= f.text_field :name%></td>
+        <td bgcolor=#FFffff><%= f.label :"이름" %></td>
+        <td bgcolor=#FFffff><%= f.text_field :name%></td>
       </div>
     </tr>
     <tr>  
       <div class="field">
-        <td><%= f.label :student_number %></td>
-        <td><%= f.text_field :student_number %></td>
+        <td bgcolor="#FFEAEA"><%= f.label :"학번" %></td>
+        <td bgcolor="#FFEAEA"><%= f.text_field :student_number %></td>
       </div>
     </tr>
     <tr>
       <div class="field">
-        <td><%= f.label :major %></td>
-        <td><%= select_tag 'domitory[major]', options_for_select([['선택해주세요', 'first'],
+        <td bgcolor="#FFffff"><%= f.label :"전공" %></td>
+        <td bgcolor="#FFffff"><%= select_tag 'domitory[major]', options_for_select([['선택해주세요', 'first'],
         ['국어국문학과', '국어국문학과'], ['문예창작과', '문예창작과'], ['국사학과', '국사학과'],
         ['영어과', '영어과'], ['일본어과', '일본어과'], ['프랑스어과', '프랑스어과'], ['독일어과', '독일어과'],
         ['중어중국학과','중어중국학과'], ['경제학과','경제학과'], ['국제경영학과', '국제경영학과'], ['문헌정보학과','문헌정보학과'],
@@ -90,20 +99,20 @@
     </tr>
     <tr>  
       <div class="field">
-        <td><%= f.label :user_phone_number %></td>
-        <td><%= f.text_field :user_phone_number %></td>
+        <td bgcolor="#FFEAEA"><%= f.label :"본인 전화번호" %></td>
+        <td bgcolor="#FFEAEA"><%= f.text_field :user_phone_number %></td>
       </div>
     </tr>
     <tr>  
       <div class="field">
-        <td><%= f.label :parent_phone_number %></td>
-        <td><%= f.text_field :parent_phone_number %></td>
+        <td bgcolor="#FFffff"><%= f.label :"보호자 전화번호" %></td>
+        <td bgcolor="#FFffff"><%= f.text_field :parent_phone_number %></td>
       </div>
     </tr>
     <tr>  
       <div class="field">
-        <td><%= f.label :room_number %></td>
-        <td><%= f.text_field :room_number %></td>
+        <td bgcolor="#FFEAEA"><%= f.label :"호실" %></td>
+        <td bgcolor="#FFEAEA"><%= f.text_field :room_number %></td>
       </div>
     </tr>
   </table>  
@@ -115,3 +124,6 @@
     <% end %>
     
     <%= render "devise/shared/links" %>
+    </div>
+    </div>
+  </div>
